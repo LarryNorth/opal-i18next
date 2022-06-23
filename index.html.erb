@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- this title is verified in spec/runner.rb -->
+  <title>Opal I18next - RSpec Runner</title>
+</head>
+<body>
+  <script>
+    window.onerror = function(msg, url, line) {
+      var error = document.createElement("div");
+          error.setAttribute("id", "rspec-error");
+          error.appendChild(document.createTextNode(msg));
+
+      document.body.appendChild(error);
+    }
+  </script>
+  <%= javascript_include_tag @server.main %>
+</body>
+</html>
+

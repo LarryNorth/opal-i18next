@@ -1,0 +1,7 @@
+source "https://rubygems.org"
+
+gem "opal-sprockets", "~> 1.0.3"
+gem "puma", "~> 5.6.2"
+gem "rack", "~> 2.2.4"
+gem "opal-browser", "~> 0.3.3"
+gem "opal-i18next", path: "../.."
