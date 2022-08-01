@@ -6,10 +6,14 @@ Gem::Specification.new do |spec|
   spec.authors = ["Larry North"]
   spec.email = ["lnorth@swnorth.com"]
   spec.summary = "An Opal wrapper for the JavaScript i18next module."
+  spec.description = <<~DESC
+    A basic Opal wrapper for the JavaScript i18next module that supports methods
+    init, use, t, changeLanguage, and language. Is also provides method
+    import_js_module for loading i18next plugins.
+  DESC
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.3"
 
-  # Specify which files should be added to the gem when it is released.
   spec.files += Dir["*.gemspec"]
   spec.files += Dir["lib/**/*"]
   spec.files += Dir["opal/**/*"]
