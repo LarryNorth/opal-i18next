@@ -1,4 +1,3 @@
-require "i18next"
 require "opal"
 require "native"
 

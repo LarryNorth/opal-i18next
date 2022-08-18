@@ -6,6 +6,7 @@ require "opal"
 require "native"
 require "promise"
 require "browser/setup/traditional"
+require "i18next"
 require "opal-i18next"
 
 I18n = I18next::I18next.new
