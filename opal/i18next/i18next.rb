@@ -1,4 +1,4 @@
-require "vendor/i18next"
+require "i18next"
 require "opal"
 require "native"
 
