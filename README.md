@@ -52,6 +52,25 @@ screenshot of the browser output in file `screenshot.png`.
 
 ## Usage
 
+`opal-i18next` can be added to your Opal application sources using a standard require:
+
+```ruby
+# app/application.rb
+require "opal"
+require "promise"
+require "i18next"
+require "opal-i18next"
+
+I18n = I18next::I18next.new
+
+...
+```
+
+> **Note**: This file requires three important dependencies, `promise`, `i18next` and `opal-i18next`, required in that order.
+> You need to bring your own `i18next.js` file as the gem does not include one.
+> Download a copy and place it into `app/` or whichever directory
+> you are compiling assets from.
+
 See the example application in the `examples` folder of the source code.
 
 ## License
