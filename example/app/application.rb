@@ -3,7 +3,6 @@
 # and button's language.
 
 require "opal"
-require "native"
 require "promise"
 require "browser/setup/traditional"
 require "i18next"
