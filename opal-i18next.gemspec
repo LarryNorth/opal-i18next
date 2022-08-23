@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.summary = "An Opal wrapper for the JavaScript i18next module."
   spec.description = <<~DESC
     A basic Opal wrapper for the JavaScript i18next module that supports methods
-    init, use, t, changeLanguage, and language. Is also provides method
+    init, use, t, changeLanguage, and language. It also provides method
     import_js_module for loading i18next plugins.
   DESC
   spec.authors = ["Larry North"]
