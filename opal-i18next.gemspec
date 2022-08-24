@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   }
 
   spec.files += Dir["*.gemspec"]
+  spec.files += Dir[".yardopts"]
   spec.files += Dir["lib/**/*"]
   spec.files += Dir["opal/**/*"]
   spec.require_paths = ["lib"]
