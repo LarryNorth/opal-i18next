@@ -1,4 +1,4 @@
-## 0.1.12- 2022-08-24
+## 0.1.2- 2022-08-24
 
 * Show documentation at rubydoc.info
 
