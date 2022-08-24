@@ -57,9 +57,3 @@ task(:nil) {}
 end
 
 task :default => :selenium_chrome
-
-# Yard task, run: rake yard
-YARD::Rake::YardocTask.new do |t|
-  t.files = ['opal/i18next/**/*.rb']
-  t.options = ['--fail-on-warning', '--readme', 'README.md', '--files', 'example/app/application.rb']
-end

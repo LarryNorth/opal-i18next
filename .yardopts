@@ -1,0 +1,1 @@
+opal/i18next/**/*.rb --fail-on-warning --readme README.md --files example/app/application.rb
