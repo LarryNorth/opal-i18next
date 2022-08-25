@@ -1,7 +1,7 @@
 ## 0.1.4
 
 * Unimplemented i18next methods raise an exception
-* Support the exists method
+* Support methods exists and languages
 * The t method accepts multiple keys
 
 * Add .yardopts to the gem file to show documentation at rubydoc.info

@@ -12,8 +12,10 @@ require "native"
   # It wraps i18next methods {https://www.i18next.com/overview/api#init init},
   # {https://www.i18next.com/overview/api#use use},
   # {https://www.i18next.com/overview/api#t t},
-  # {https://www.i18next.com/overview/api#changelanguage changeLanguage}, and
-  # {https://www.i18next.com/overview/api#language language}.
+  # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
+  # {https://www.i18next.com/overview/api#language language},
+  # {https://www.i18next.com/overview/api#languages languages},
+  # {https://www.i18next.com/overview/api#exists exists},
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
 
@@ -99,9 +101,10 @@ require "native"
       raise 'Not implemented'
     end
 
-    # @private
+    # @see https://www.i18next.com/overview/api#languages The i18next languages method
+    # @return language codes that will be used to look up the translation value
     def languages
-      raise 'Not implemented'
+      `i18next.languages`
     end
 
     # @private

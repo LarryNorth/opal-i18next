@@ -21,7 +21,7 @@ RSpec.describe I18next do
    it "can change the language" do
     i18next = I18next::I18next.new
     i18next.init({
-      lng: "en",
+      fallbackLng: "en",
       resources: {
         en: {
            translation: { key: "hello world" }
@@ -34,10 +34,13 @@ RSpec.describe I18next do
       expect(i18next.exists("key")).to be(true)
       expect(i18next.exists("unknown_key")).to be(false)
 
+      expect(i18next.languages).to eq(["en"])
       expect(i18next.language).to eq("en")
+
       expect(i18next.t("key")).to eq("hello world")
 
       i18next.change_language("de").then do
+        expect(i18next.languages).to eq(["de", "en"])
         expect(i18next.language).to eq("de")
         expect(i18next.t("unknown_key", "key")).to eq("hallo welt")
       end

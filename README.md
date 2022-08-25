@@ -9,6 +9,8 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [t](https://www.i18next.com/overview/api#t)
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
 - [language](https://www.i18next.com/overview/api#language)
+- [languages](https://www.i18next.com/overview/api#languages)
+- [exists](https://www.i18next.com/overview/api#exists)
 
 It also provides method `import_js_module` for loading [i18next plugins](https://www.i18next.com/overview/plugins-and-utils).
 
