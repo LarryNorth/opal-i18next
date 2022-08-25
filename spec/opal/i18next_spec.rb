@@ -5,51 +5,86 @@ require "js/i18next-21.9.1"
 require "i18next/i18next"
 
 RSpec.describe I18next do
-  context "when there is a Javascript module" do
-    it "can import the default export" do
-      i18next = I18next::I18next.new
-      promise = Promise.new
-      i18next.import_js_module("../../js/js_module").then do |js_module|
-        promise.resolve(`js_module.default`)
-      end.then do |default_export|
-        expect(default_export).to eq("default export")
+  let(:i18next) { I18next::I18next.new }
+
+  it "can import a JavaScript module's default export" do
+    promise = Promise.new
+    i18next.import_js_module("../../js/js_module").then do |js_module|
+      promise.resolve(`js_module.default`)
+    end.then do |default_export|
+      expect(default_export).to eq("default export")
+    end
+  end
+
+  it "can test a key's existence" do
+    i18next.init({
+      lng: "en",
+      resources: {
+        en: {
+           translation: { known_key: "known" }
+        }
+      }
+    }).then do
+      expect(i18next.exists("known_key")).to be(true)
+      expect(i18next.exists("unknown_key")).to be(false)
+    end
+  end
+
+  it "can determine a language's reading direction" do
+    expect(i18next.dir("de']")).to eq("ltr")
+
+    # Hebrew's reading direction is right-to-left
+    expect(i18next.dir("he")).to eq("rtl")
+  end
+
+  it "can determine the current language's reading direction" do
+    i18next.init({
+      lng: "en",
+    }).then do
+      expect(i18next.dir).to be("ltr")
+    end
+  end
+
+  it "can determine the current language" do
+    i18next.init({
+      lng: "en",
+    }).then do
+      expect(i18next.language).to be("en")
+    end
+  end
+
+  it "can change the language" do
+    i18next.init({
+      lng: "en",
+    }).then do
+      i18next.change_language("de").then do
+        expect(i18next.language).to eq("de")
       end
     end
   end
 
-  context "when initialized" do
-   it "can change the language" do
-    i18next = I18next::I18next.new
+  it "can find the languages that will used for translations" do
+    i18next.init({
+      fallbackLng: "en",
+    }).then do
+      expect(i18next.languages).to eq(["en"])
+      i18next.change_language("de").then do
+        expect(i18next.languages).to eq(["de", "en"])
+      end
+    end
+  end
+
+  it "can do a translation" do
     i18next.init({
       fallbackLng: "en",
       resources: {
         en: {
-           translation: { key: "hello world" }
-        },
-        de: {
-          translation: { key: "hallo welt" }
+           translation: { known_key: "translation" }
         }
       }
-    }).then do
-      expect(i18next.exists("key")).to be(true)
-      expect(i18next.exists("unknown_key")).to be(false)
-
-      # Hebrew's reading direction is right-to-left
-      expect(i18next.dir("he")).to eq("rtl")
-
-      expect(i18next.languages).to eq(["en"])
-      expect(i18next.language).to eq("en")
-
-      expect(i18next.t("key")).to eq("hello world")
-
-      i18next.change_language("de").then do
-        expect(i18next.languages).to eq(["de", "en"])
-        expect(i18next.resolved_language).to eq("de")
-        expect(i18next.language).to eq("de")
-        expect(i18next.dir).to eq("ltr")
-        expect(i18next.t("unknown_key", "key")).to eq("hallo welt")
-      end
+   }).then do
+      expect(i18next.t("known_key")).to eq("translation")
+      expect(i18next.t("unknown_key", "known_key")).to eq("translation")
     end
-   end
   end
 end
