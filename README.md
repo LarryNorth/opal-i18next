@@ -12,6 +12,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [languages](https://www.i18next.com/overview/api#languages)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
 - [exists](https://www.i18next.com/overview/api#exists)
+- [dir](https://www.i18next.com/overview/api#dir)
 
 It also provides method `import_js_module` for loading [i18next plugins](https://www.i18next.com/overview/plugins-and-utils).
 

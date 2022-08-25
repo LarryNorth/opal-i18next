@@ -34,6 +34,9 @@ RSpec.describe I18next do
       expect(i18next.exists("key")).to be(true)
       expect(i18next.exists("unknown_key")).to be(false)
 
+      # Hebrew's reading direction is right-to-left
+      expect(i18next.dir("he")).to eq("rtl")
+
       expect(i18next.languages).to eq(["en"])
       expect(i18next.language).to eq("en")
 
@@ -43,6 +46,7 @@ RSpec.describe I18next do
         expect(i18next.languages).to eq(["de", "en"])
         expect(i18next.resolved_language).to eq("de")
         expect(i18next.language).to eq("de")
+        expect(i18next.dir).to eq("ltr")
         expect(i18next.t("unknown_key", "key")).to eq("hallo welt")
       end
     end

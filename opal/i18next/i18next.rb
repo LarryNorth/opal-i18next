@@ -17,6 +17,7 @@ require "native"
   # {https://www.i18next.com/overview/api#languages languages},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
   # {https://www.i18next.com/overview/api#exists exists},
+  # {https://www.i18next.com/overview/api#dir dir},
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
 
@@ -134,9 +135,12 @@ require "native"
       raise 'Not implemented'
     end
 
-    # @private
-    def dir
-      raise 'Not implemented'
+    # Get a language's reading direction
+    # @param lng [String] the language; if omitted, the current language is used
+    # @return "ltr" or "rtl"
+    # @see https://www.i18next.com/overview/api#dir
+    def dir(lng)
+      `i18next.dir(lng)`
     end
 
     # @private
