@@ -1,5 +1,6 @@
 ## 0.1.4
 
+* Unimplemented i18next methods raise an exception
 * Support the exists method
 * The t method accepts multiple keys
 
