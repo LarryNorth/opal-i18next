@@ -31,6 +31,9 @@ RSpec.describe I18next do
         }
       }
     }).then do
+      expect(i18next.exists("key")).to be(true)
+      expect(i18next.exists("unknown_key")).to be(false)
+
       expect(i18next.language).to eq("en")
       expect(i18next.t("key")).to eq("hello world")
 

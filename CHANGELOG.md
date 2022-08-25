@@ -1,4 +1,11 @@
-## 0.1.3- 2022-08-24
+## 0.1.4
+
+* Support the exists method
+* The t method accepts multiple keys
+
+* Add .yardopts to the gem file to show documentation at rubydoc.info
+
+## 0.1.3 - 2022-08-24
 
 * Add .yardopts to the gem file to show documentation at rubydoc.info
 
