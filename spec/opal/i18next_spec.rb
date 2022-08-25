@@ -1,7 +1,7 @@
 require "opal"
 require 'promise'
 require "opal/rspec/async"
-require "js/i18next"
+require "js/i18next-21.9.1"
 require "i18next/i18next"
 
 RSpec.describe I18next do
