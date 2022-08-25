@@ -41,6 +41,7 @@ RSpec.describe I18next do
 
       i18next.change_language("de").then do
         expect(i18next.languages).to eq(["de", "en"])
+        expect(i18next.resolved_language).to eq("de")
         expect(i18next.language).to eq("de")
         expect(i18next.t("unknown_key", "key")).to eq("hallo welt")
       end

@@ -15,6 +15,7 @@ require "native"
   # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
+  # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
   # {https://www.i18next.com/overview/api#exists exists},
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
@@ -107,9 +108,10 @@ require "native"
       `i18next.languages`
     end
 
-    # @private
+    # @see https://www.i18next.com/overview/api#resolvedLanguage The i18next resolvedLanguage method
+    # @return the current resolved language
     def resolved_language
-      raise 'Not implemented'
+      `i18next.resolvedLanguage`
     end
 
     # @private
