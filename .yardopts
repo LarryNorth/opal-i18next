@@ -1,1 +1,1 @@
-opal/i18next/**/*.rb
+--no-private opal/i18next/**/*.rb

@@ -93,5 +93,111 @@ require "native"
     def exists(key)
       `i18next.exists(key)`
     end
+
+    # @private
+    def get_fixed_t
+      raise 'Not implemented'
+    end
+
+    # @private
+    def languages
+      raise 'Not implemented'
+    end
+
+    # @private
+    def resolved_language
+      raise 'Not implemented'
+    end
+
+    # @private
+    def load_namespaces(*ns)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def load_languages(*lngs)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def reload_resources
+      raise 'Not implemented'
+    end
+
+    # @private
+    def set_default_namespace(ns)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def dir
+      raise 'Not implemented'
+    end
+
+    # @private
+    def format(data, format, lng)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def create_instance(options)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def clone_instance(options)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def off
+      raise 'Not implemented'
+    end
+
+    # @private
+    def on
+      raise 'Not implemented'
+    end
+
+    # @private
+    def get_resource(lng, ns, key, options)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def add_resource(lng, ns, key, options)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def add_resources(lng, ns, resources)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def add_resource_bundle(lng, ns, resouces, deep, overwrite)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def has_resource_bundle(lng, ns)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def get_data_by_language(lng)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def get_resource_bundle(lng, ns)
+      raise 'Not implemented'
+    end
+
+    # @private
+    def remove_resource_bundle(lng, ns)
+      raise 'Not implemented'
+    end
+
   end
 end
