@@ -88,5 +88,10 @@ require "native"
     def t(*keys)
       `i18next.t(keys)`
     end
+
+    # @return [Boolean] true if the key exists
+    def exists(key)
+      `i18next.exists(key)`
+    end
   end
 end
