@@ -83,10 +83,10 @@ require "native"
     end
 
     # The {https://www.i18next.com/overview/api#t i18next} translation associated with a key
-    # @param [String] key a key that references a translation, single key only
-    # @return [String] the translation associated with the key
-    def t(key)
-      `i18next.t(key)`
+    # @param [Array<String>] *keys one or more keys that reference translations
+    # @return [String] the translation associated with the first key that resolves
+    def t(*keys)
+      `i18next.t(keys)`
     end
   end
 end

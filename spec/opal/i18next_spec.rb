@@ -36,7 +36,7 @@ RSpec.describe I18next do
 
       i18next.change_language("de").then do
         expect(i18next.language).to eq("de")
-        expect(i18next.t("key")).to eq("hallo welt")
+        expect(i18next.t("unknown_key", "key")).to eq("hallo welt")
       end
     end
    end
