@@ -1,8 +1,9 @@
-## 0.1.4
+## 0.2.0
 
+* The t method accepts multiple keys and options
+* Better specs
 * Unimplemented i18next methods raise an exception
 * Support methods exists, languages and resolvedLanguage
-* The t method accepts multiple keys
 
 * Add .yardopts to the gem file to show documentation at rubydoc.info
 

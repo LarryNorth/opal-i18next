@@ -16,6 +16,22 @@ RSpec.describe I18next do
     end
   end
 
+  it "can use an i18next plugin" do
+    i18next.import_js_module("../../js/i18next-touppercase").then do |touppercase_module|
+      i18next.use(touppercase_module)
+      i18next.init({
+        lng: "en",
+        resources: {
+          en: {
+             translation: { key: "lowercase" }
+          }
+        }
+      }).then do
+        expect(i18next.t("key", { postProcess: 'touppercase' })).to eq("LOWERCASE")
+      end
+    end
+  end
+
   it "can test a key's existence" do
     i18next.init({
       lng: "en",
@@ -84,7 +100,7 @@ RSpec.describe I18next do
       }
    }).then do
       expect(i18next.t("known_key")).to eq("translation")
-      expect(i18next.t("unknown_key", "known_key")).to eq("translation")
+      expect(i18next.t(["unknown_key", "known_key"])).to eq("translation")
     end
   end
 end

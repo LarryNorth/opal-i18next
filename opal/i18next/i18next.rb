@@ -87,10 +87,11 @@ require "native"
     end
 
     # The {https://www.i18next.com/overview/api#t i18next} translation associated with a key
-    # @param [Array<String>] *keys one or more keys that reference translations
+    # @param [String, Array<String>] key one or more keys that reference translations
+    # @param [Hash] options options for formatters, post processors, etc.
     # @return [String] the translation associated with the first key that resolves
-    def t(*keys)
-      `i18next.t(keys)`
+    def t(key, options={})
+      `i18next.t(key, #{options.to_n})`
     end
 
     # @return [Boolean] true if the key exists
