@@ -105,4 +105,22 @@ RSpec.describe I18next do
       expect(i18next.t(["unknown_key", "known_key"])).to eq("translation")
     end
   end
+
+  it "can load namespaces" do
+    i18next.import_js_module('https://unpkg.com/i18next-fetch-backend@3.0.0/dist/i18next-fetch-backend.esm.js').then do |fetch_module|
+      i18next.use(fetch_module)
+      i18next.init({
+        debug: true,
+        ns: "default",
+        lng: "en",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        expect(i18next.t("key")).to eq("en default")
+        expect(i18next.exists("other_key", { ns: "other" })).to be false
+        i18next.load_namespaces("other"). then do
+          expect(i18next.t("other_key", { ns: "other" })).to eq("en other")
+        end
+      end
+    end
+  end
 end

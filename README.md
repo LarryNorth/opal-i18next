@@ -10,6 +10,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
 - [language](https://www.i18next.com/overview/api#language)
 - [languages](https://www.i18next.com/overview/api#languages)
+- [loadNamespaces](https://www.i18next.com/overview/api#loadNamespaces)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
 - [exists](https://www.i18next.com/overview/api#exists)
 - [dir](https://www.i18next.com/overview/api#dir)

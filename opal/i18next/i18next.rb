@@ -9,15 +9,16 @@ require "native"
 
   # {I18next} is a basic wrapper around the JavaScript {https://www.i18next.com i18next module}.
   #
-  # It wraps i18next methods {https://www.i18next.com/overview/api#init init},
-  # {https://www.i18next.com/overview/api#use use},
-  # {https://www.i18next.com/overview/api#t t},
-  # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
+  # It wraps i18next methods {https://www.i18next.com/overview/api#changelanguage changeLanguage},
+  # {https://www.i18next.com/overview/api#dir dir},
+  # {https://www.i18next.com/overview/api#exists exists},
+  # {https://www.i18next.com/overview/api#init init},
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
+  # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
-  # {https://www.i18next.com/overview/api#exists exists},
-  # {https://www.i18next.com/overview/api#dir dir},
+  # {https://www.i18next.com/overview/api#t t},
+  # {https://www.i18next.com/overview/api#use use}.
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
 
@@ -120,9 +121,20 @@ require "native"
       `#{@i18next}.resolvedLanguage`
     end
 
-    # @private
-    def load_namespaces(*ns)
-      raise 'Not implemented'
+    # Loads additional namespaces not defined in init options
+    # @param [String, Array<String>] ns one or more namespaces
+    # @return [Promise] a promise that resolves when the namespaces have been loaded
+    # @see https://www.i18next.com/overview/api#loadNamespaces The i18next loadNamespaces method
+    def load_namespaces(ns)
+      promise = Promise.new
+      `
+      #{@i18next}.loadNamespaces(ns)
+        .then(
+          t => {
+            promise.$resolve(t);
+          });
+      `
+      promise
     end
 
     # @private

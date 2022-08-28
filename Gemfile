@@ -6,7 +6,7 @@ gemspec
 gem 'opal-sprockets', '~> 1.0.3'
 
 gem 'rubocop', '~> 1.29.0'
-gem 'thin', '~> 1.8.1'
+gem "puma", "~> 5.6.2"
 gem 'yard', '~> 0.9.28'
 
 # specs
