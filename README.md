@@ -71,7 +71,7 @@ I18n = I18next::I18next.new
 ```
 
 > **Note**: This file requires three important dependencies, `promise`, `i18next` and `opal-i18next`, required in that order.
-> You need to bring your own `i18next.js` file as the gem does not include one.
+> You need to bring your own [i18next.js](https://unpkg.com/browse/i18next/dist/umd/) file as the gem does not include one.
 > Download a copy and place it into `app/` or whichever directory
 > you are compiling assets from.
 
