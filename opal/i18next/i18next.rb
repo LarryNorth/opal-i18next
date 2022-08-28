@@ -21,6 +21,10 @@ require "native"
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
 
+    def initialize
+      @i18next = `i18next.createInstance()`
+    end
+
     # Imports a JavaScript module (ESM)
     #
     # Use this method to import {https://www.i18next.com/overview/plugins-and-utils i18next JavaScript plugins}
@@ -48,7 +52,7 @@ require "native"
     # @param js_module a plugin's JavaScript module that was imported
     #   by method {#import_js_module}
     def use(js_module)
-      `i18next.use(js_module.default)`
+      `#{@i18next}.use(js_module.default)`
     end
 
     # Initializes {https://www.i18next.com/overview/api#init i18next}
@@ -57,7 +61,7 @@ require "native"
     def init(options)
       promise = Promise.new
       `
-      i18next.init(#{options.to_n})
+      #{@i18next}.init(#{options.to_n})
         .then(
           t => {
             promise.$resolve(t);
@@ -73,7 +77,7 @@ require "native"
     def change_language(language)
       promise = Promise.new
       `
-      i18next.changeLanguage(language).then(
+      #{@i18next}.changeLanguage(language).then(
           t => {
             promise.$resolve(t)
           });
@@ -83,7 +87,7 @@ require "native"
 
     # @return [String] the current {https://www.i18next.com/overview/api#language i18next} language
     def language
-      `i18next.language`
+      `#{@i18next}.language`
     end
 
     # The {https://www.i18next.com/overview/api#t i18next} translation associated with a key
@@ -91,12 +95,12 @@ require "native"
     # @param [Hash] options options for formatters, post processors, etc.
     # @return [String] the translation associated with the first key that resolves
     def t(key, options={})
-      `i18next.t(key, #{options.to_n})`
+      `#{@i18next}.t(key, #{options.to_n})`
     end
 
     # @return [Boolean] true if the key exists
     def exists(key)
-      `i18next.exists(key)`
+      `#{@i18next}.exists(key)`
     end
 
     # @private
@@ -107,13 +111,13 @@ require "native"
     # @see https://www.i18next.com/overview/api#languages The i18next languages method
     # @return language codes that will be used to look up the translation value
     def languages
-      `i18next.languages`
+      `#{@i18next}.languages`
     end
 
     # @see https://www.i18next.com/overview/api#resolvedLanguage The i18next resolvedLanguage method
     # @return the current resolved language
     def resolved_language
-      `i18next.resolvedLanguage`
+      `#{@i18next}.resolvedLanguage`
     end
 
     # @private
@@ -141,7 +145,7 @@ require "native"
     # @return "ltr" or "rtl"
     # @see https://www.i18next.com/overview/api#dir
     def dir(lng)
-      `i18next.dir(lng)`
+      `#{@i18next}.dir(lng)`
     end
 
     # @private

@@ -47,10 +47,12 @@ RSpec.describe I18next do
   end
 
   it "can determine a language's reading direction" do
-    expect(i18next.dir("de']")).to eq("ltr")
+      i18next.init({}).then do
+      expect(i18next.dir("de']")).to eq("ltr")
 
-    # Hebrew's reading direction is right-to-left
-    expect(i18next.dir("he")).to eq("rtl")
+      # Hebrew's reading direction is right-to-left
+      expect(i18next.dir("he")).to eq("rtl")
+    end
   end
 
   it "can determine the current language's reading direction" do
