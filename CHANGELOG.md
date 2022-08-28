@@ -3,7 +3,7 @@
 * The t method accepts multiple keys and options
 * Better specs
 * Unimplemented i18next methods raise an exception
-* Support methods exists, languages and resolvedLanguage
+* Support methods exists, languages, loadNamespaces and resolvedLanguage
 
 * Add .yardopts to the gem file to show documentation at rubydoc.info
 
