@@ -112,7 +112,7 @@ RSpec.describe I18next do
       i18next.init({
         debug: true,
         ns: "default",
-        lng: "en",
+        fallbackLng: "en",
         backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
       }).then do
         expect(i18next.t("key")).to eq("en default")
