@@ -80,8 +80,8 @@ require "native"
       promise = Promise.new
       `
       #{@i18next}.changeLanguage(language).then(
-          t => {
-            promise.$resolve(t)
+          () => {
+            promise.$resolve()
           });
       `
       promise
@@ -131,8 +131,8 @@ require "native"
       `
       #{@i18next}.loadNamespaces(ns)
         .then(
-          t => {
-            promise.$resolve(t);
+          () => {
+            promise.$resolve()
           });
       `
       promise
