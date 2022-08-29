@@ -22,6 +22,7 @@ require "native"
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
 
+    # Each I18next instance has its own i18next Javascript module
     def initialize
       @i18next = `i18next.createInstance()`
     end
