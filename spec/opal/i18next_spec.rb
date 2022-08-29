@@ -107,7 +107,7 @@ RSpec.describe I18next do
   end
 
   it "can load namespaces" do
-    i18next.import_js_module('https://unpkg.com/i18next-fetch-backend@3.0.0/dist/i18next-fetch-backend.esm.js').then do |fetch_module|
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
       i18next.use(fetch_module)
       i18next.init({
         debug: true,
