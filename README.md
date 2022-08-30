@@ -14,6 +14,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [languages](https://www.i18next.com/overview/api#languages)
 - [loadNamespaces](https://www.i18next.com/overview/api#loadNamespaces)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
+- [setDefaultNamespace](https://www.i18next.com/overview/api#setDefaultNamespace)
 - [t](https://www.i18next.com/overview/api#t)
 - [use](https://www.i18next.com/overview/api#use)
 

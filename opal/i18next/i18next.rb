@@ -19,6 +19,7 @@ require "native"
   # {https://www.i18next.com/overview/api#languages languages},
   # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
+  # {https://www.i18next.com/overview/api#setDefaultNamespace setDefaultNamespace},
   # {https://www.i18next.com/overview/api#t t}, and
   # {https://www.i18next.com/overview/api#use use}.
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
@@ -150,15 +151,17 @@ require "native"
       raise 'Not implemented'
     end
 
-    # @private
+    # Changes the default namespace.
+    # @param ns [String] new default namespace
+    # @see https://www.i18next.com/overview/api#setDefaultNamespace The i18next setDefaultNamespace method
     def set_default_namespace(ns)
-      raise 'Not implemented'
+      `#{@i18next}.setDefaultNamespace(ns)`
     end
 
     # Get a language's reading direction
     # @param lng [String] the language; if omitted, the current language is used
     # @return "ltr" or "rtl"
-    # @see https://www.i18next.com/overview/api#dir
+    # @see https://www.i18next.com/overview/api#dir The i18next dir method
     def dir(lng)
       `#{@i18next}.dir(lng)`
     end
@@ -189,13 +192,13 @@ require "native"
     end
 
     # Gets one value by given key.
-    # @see https://www.i18next.com/overview/api#getResource
+    # @see https://www.i18next.com/overview/api#getResource The i18next getResource method
     def get_resource(lng, ns, key, options = {})
       `#{@i18next}.getResource(lng, ns, key, options)`
     end
 
     # Adds one key/value.
-    # @see https://www.i18next.com/overview/api#addResource
+    # @see https://www.i18next.com/overview/api#addResource The i18next addResource method
     def add_resource(lng, ns, key, value, options = {})
       `#{@i18next}.addResource(lng, ns, key, value, options)`
     end

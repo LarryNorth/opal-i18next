@@ -141,4 +141,26 @@ RSpec.describe I18next do
       expect(i18next.get_resource("fr", "default", "key", "Français")).to eq("Français")
     end
   end
+
+  it "can set the default namespace" do
+    i18next.init({
+      debug: true,
+      lng: "en",
+      ns: "default",
+      resources: {
+        en: {
+          default: {
+            "key": "default"
+          },
+          other: {
+            "key": "other"
+          }
+        }
+      }
+    }).then do
+      expect(i18next.t("key")).to eq("default")
+      i18next.set_default_namespace("other")
+      expect(i18next.t("key")).to eq("other")
+    end
+  end
 end
