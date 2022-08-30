@@ -9,15 +9,17 @@ require "native"
 
   # {I18next} is a basic wrapper around the JavaScript {https://www.i18next.com i18next module}.
   #
-  # It wraps i18next methods {https://www.i18next.com/overview/api#changelanguage changeLanguage},
+  # It wraps i18next methods {https://www.i18next.com/overview/api#addResource addResource},
+  # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
+  # {https://www.i18next.com/overview/api#getResource getResource},
   # {https://www.i18next.com/overview/api#init init},
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
   # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
-  # {https://www.i18next.com/overview/api#t t},
+  # {https://www.i18next.com/overview/api#t t}, and
   # {https://www.i18next.com/overview/api#use use}.
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
@@ -58,9 +60,9 @@ require "native"
     end
 
     # Initializes {https://www.i18next.com/overview/api#init i18next}
-    # @param options [Hash] a hash with keys matching the {https://www.i18next.com/overview/configuration-options i18next options}
+    # @param options [Hash] a hash with keys matching the {https://www.i18next.com/overview/configuration-options i18next options}.
     # @return [Promise] a promise that resolves when i18next has been initialized
-    def init(options)
+    def init(options = {})
       promise = Promise.new
       `
       #{@i18next}.init(#{options.to_n})
@@ -186,14 +188,16 @@ require "native"
       raise 'Not implemented'
     end
 
-    # @private
-    def get_resource(lng, ns, key, options)
-      raise 'Not implemented'
+    # Gets one value by given key.
+    # @see https://www.i18next.com/overview/api#getResource
+    def get_resource(lng, ns, key, options = {})
+      `#{@i18next}.getResource(lng, ns, key, options)`
     end
 
-    # @private
-    def add_resource(lng, ns, key, options)
-      raise 'Not implemented'
+    # Adds one key/value.
+    # @see https://www.i18next.com/overview/api#addResource
+    def add_resource(lng, ns, key, value, options = {})
+      `#{@i18next}.addResource(lng, ns, key, value, options)`
     end
 
     # @private

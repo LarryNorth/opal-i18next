@@ -4,16 +4,18 @@
 
 This gem supports i18next's basic functionality. The supported methods are:
 
-- [init](https://www.i18next.com/overview/api#init)
-- [use](https://www.i18next.com/overview/api#use)
-- [t](https://www.i18next.com/overview/api#t)
+- [addResource](https://www.i18next.com/overview/api#addResource)
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
+- [dir](https://www.i18next.com/overview/api#dir)
+- [exists](https://www.i18next.com/overview/api#exists)
+- [getResource](https://www.i18next.com/overview/api#getResource)
+- [init](https://www.i18next.com/overview/api#init)
 - [language](https://www.i18next.com/overview/api#language)
 - [languages](https://www.i18next.com/overview/api#languages)
 - [loadNamespaces](https://www.i18next.com/overview/api#loadNamespaces)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
-- [exists](https://www.i18next.com/overview/api#exists)
-- [dir](https://www.i18next.com/overview/api#dir)
+- [t](https://www.i18next.com/overview/api#t)
+- [use](https://www.i18next.com/overview/api#use)
 
 It also provides method `import_js_module` for loading [i18next plugins](https://www.i18next.com/overview/plugins-and-utils).
 

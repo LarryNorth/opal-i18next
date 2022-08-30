@@ -123,4 +123,22 @@ RSpec.describe I18next do
       end
     end
   end
+
+  it "can add a resource" do
+    i18next.init({
+      debug: true
+    }).then do
+      i18next.add_resource("fr", "default", "key", "Français")
+      expect(i18next.t("key", { lng: "fr", ns: "default" })).to eq("Français")
+    end
+  end
+
+  it "can get a resource" do
+    i18next.init({
+      debug: true
+    }).then do
+      i18next.add_resource("fr", "default", "key", "Français")
+      expect(i18next.get_resource("fr", "default", "key", "Français")).to eq("Français")
+    end
+  end
 end
