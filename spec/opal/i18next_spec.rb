@@ -142,6 +142,21 @@ RSpec.describe I18next do
     end
   end
 
+  it "can add resources" do
+    i18next.init({
+      debug: true,
+      lng: "fr",
+      ns: "default"
+    }).then do
+      i18next.add_resources("fr", "default", {
+        french: "Français",
+        german: "Allemand"
+      })
+      expect(i18next.t("french")).to eq("Français")
+      expect(i18next.t("german")).to eq("Allemand")
+    end
+  end
+
   it "can set the default namespace" do
     i18next.init({
       debug: true,

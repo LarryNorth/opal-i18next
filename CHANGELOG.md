@@ -3,7 +3,7 @@
 * The t method accepts multiple keys and options
 * Better specs
 * Unimplemented i18next methods raise an exception
-* Support methods addResource, exists, getResource, languages, loadNamespaces, resolvedLanguage, and setDefaultNamespace
+* Support methods addResource, addResources, exists, getResource, languages, loadNamespaces, resolvedLanguage, and setDefaultNamespace
 * Specs use a local copy of the i18next-fetch-backend plugin
 
 ## 0.1.3 - 2022-08-24

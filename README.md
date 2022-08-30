@@ -5,6 +5,7 @@
 This gem supports i18next's basic functionality. The supported methods are:
 
 - [addResource](https://www.i18next.com/overview/api#addResource)
+- [addResources](https://www.i18next.com/overview/api#addResources)
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
 - [dir](https://www.i18next.com/overview/api#dir)
 - [exists](https://www.i18next.com/overview/api#exists)

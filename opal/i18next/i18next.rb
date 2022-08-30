@@ -10,6 +10,7 @@ require "native"
   # {I18next} is a basic wrapper around the JavaScript {https://www.i18next.com i18next module}.
   #
   # It wraps i18next methods {https://www.i18next.com/overview/api#addResource addResource},
+  # {https://www.i18next.com/overview/api#addResources addResources},
   # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
@@ -203,9 +204,11 @@ require "native"
       `#{@i18next}.addResource(lng, ns, key, value, options)`
     end
 
-    # @private
+    # Adds multiple key/values.
+    # @param resources [Hash] key/value pairs
+    # @see https://www.i18next.com/overview/api#addResources The i18next addResources method
     def add_resources(lng, ns, resources)
-      raise 'Not implemented'
+      `#{@i18next}.addResources(lng, ns, #{resources.to_n})`
     end
 
     # @private
