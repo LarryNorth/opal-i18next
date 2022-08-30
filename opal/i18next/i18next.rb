@@ -1,5 +1,6 @@
 require "opal"
 require "native"
+require "json"
 
   # Uses PromiseV2 if present
   # @see https://opalrb.com/docs/guides/v1.5.1/async PromiseV2
@@ -15,6 +16,7 @@ require "native"
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
   # {https://www.i18next.com/overview/api#getResource getResource},
+  # {https://www.i18next.com/overview/api#getResourceBundle getResourceBundle},
   # {https://www.i18next.com/overview/api#init init},
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
@@ -226,9 +228,11 @@ require "native"
       raise 'Not implemented'
     end
 
-    # @private
+    # Gets a resource bundle.
+    # @return [Hash] key/value pairs
+    # @see https://www.i18next.com/overview/api#getResourceBundle The i18next getResourceBundle method
     def get_resource_bundle(lng, ns)
-      raise 'Not implemented'
+      JSON.parse(`JSON.stringify(#{@i18next}.getResourceBundle(lng, ns))`)
     end
 
     # @private

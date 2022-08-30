@@ -157,6 +157,21 @@ RSpec.describe I18next do
     end
   end
 
+  it "can get a resource bundle" do
+    i18next.init({
+      debug: true,
+      resources: {
+        en: {
+          default: {
+            key: "value"
+          }
+        }
+      }
+    }).then do
+      expect(i18next.get_resource_bundle("en", "default")).to eq({ key: "value" })
+    end
+  end
+
   it "can set the default namespace" do
     i18next.init({
       debug: true,
