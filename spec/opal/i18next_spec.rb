@@ -200,7 +200,7 @@ RSpec.describe I18next do
 
   it "can handle the initialized event" do
     initializedOptions = nil
-    i18next.onInitialized { |options| initializedOptions  = options }
+    i18next.on("initialized") { |options| initializedOptions  = options }
     options = {
       debug: true,
       lng: "en",
@@ -218,8 +218,66 @@ RSpec.describe I18next do
     }
     i18next.init(options).then do
       # Ignore the default options values, which are also included in the
-      # options passed to the initialized event.
+      # options passed to the initialized event listener.
       expect(initializedOptions).to include(options)
+    end
+  end
+
+  it "can handle a language changed event" do
+    newLanguage = nil
+    i18next.on('languageChanged') { |lng|
+      newLanguage = lng
+    }
+    i18next.init({
+      lng: "en"
+    }).then do
+      expect(i18next.language).to eq("en")
+      i18next.change_language("de").then do
+        expect(newLanguage).to eq("de")
+      end
+    end
+  end
+
+  it "can unsubscribe an event's listeners" do
+    newLanguage = nil
+    i18next.on('languageChanged') { |lng|
+      newLanguage = lng
+    }
+    i18next.init({
+      lng: "en"
+    }).then do
+      expect(i18next.language).to eq("en")
+      i18next.off('languageChanged')
+      newLanguage = nil
+      i18next.change_language("de").then do
+        expect(newLanguage).to be_nil
+      end
+    end
+  end
+
+  it "can unsubscribe an event listener" do
+    event_1_triggered = false
+    event_2_triggered = false
+    i18next.on('languageChanged') { |lng|
+      event_1_triggered = true
+    }
+    listener_2 = i18next.on('languageChanged') { |lng|
+      event_2_triggered = true
+    }
+    i18next.init({
+      lng: "en"
+    }).then do
+      i18next.change_language("de").then do
+        expect(event_1_triggered).to be true
+        expect(event_2_triggered).to be true
+        i18next.off('languageChanged', listener_2)
+        event_1_triggered = false
+        event_2_triggered = false
+        i18next.change_language("fr").then do
+          expect(event_1_triggered).to be true
+          expect(event_2_triggered).to be false
+        end
+      end
     end
   end
 end

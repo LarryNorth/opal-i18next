@@ -21,12 +21,15 @@ module I18next
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
   # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
+  # {https://www.i18next.com/overview/api#events off},
+  # {https://www.i18next.com/overview/api#events on},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
   # {https://www.i18next.com/overview/api#setDefaultNamespace setDefaultNamespace},
   # {https://www.i18next.com/overview/api#t t}, and
   # {https://www.i18next.com/overview/api#use use}.
   #
-  # It can handle these {https://www.i18next.com/overview/api#events i18next events} {https://www.i18next.com/overview/api#oninitialized initialized}.
+  # It can handle {https://www.i18next.com/overview/api#events i18next events}. See methods on
+  # and off.
   #
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
@@ -245,16 +248,45 @@ module I18next
       raise 'Not implemented'
     end
 
-    # Create a handler for the i18next initialized event.
-    # @param &handler [block] an event handling block that is passed initialized options Hash
+    # Create a listener for an i18next event.
+    # @param event [String] event name
+    # @param &listener [block] an event listener that is passed event-dependent arguments
+    # @return [Proc] the listener, which can be used to unsubscribe it via method off(event, listener)
+    # @see https://www.i18next.com/overview/api#events The i18next events
+    # @see #off
+    def on(event, &listener)
+      if event == "initialized"
+        _onInitialized(listener)
+      else
+        `#{@i18next}.on(event, listener)`
+      end
+      listener
+    end
+
+    # Unsubscribes an event's listener(s)
+    # @param event [String] event name
+    # @param listener [Proc] the listener to unsubscribe; if absent, unsubscribe all listeners
+    def off(event, listener = nil)
+      if listener
+        `#{@i18next}.off(event, listener)`
+      else
+        `#{@i18next}.off(event)`
+      end
+    end
+
+    private
+
+    # @private
+    # Create a listener for the i18next initialized event.
+    # @param &listener [Proc] an event listener block that is passed initialized options Hash
     # @see https://www.i18next.com/overview/api#oninitialized The i18next initialized event
-    def onInitialized(&handler)
+    def _onInitialized(listener)
       `
       #{@i18next}.on("initialized", (options) => {
         // Convert the JavaScript options object to a string and
         // then convert that string to a Ruby hash that is passed
-        // to the block.
-        handler.$call(Opal.JSON.$parse(JSON.stringify(options)))
+        // to the listener.
+        listener.$call(Opal.JSON.$parse(JSON.stringify(options)))
       })
       `
     end
