@@ -232,6 +232,8 @@ require "json"
     # @return [Hash] key/value pairs
     # @see https://www.i18next.com/overview/api#getResourceBundle The i18next getResourceBundle method
     def get_resource_bundle(lng, ns)
+      # Convert the JavaScript object returned by getResourceBundle to a string
+      # and then convert that string to a Ruby hash that is returned to the caller.
       JSON.parse(`JSON.stringify(#{@i18next}.getResourceBundle(lng, ns))`)
     end
 
@@ -240,5 +242,15 @@ require "json"
       raise 'Not implemented'
     end
 
+    def onInitialized(&block)
+      `
+      #{@i18next}.on("initialized", (options) => {
+        // Convert the JavaScript options object to a string and
+        // then convert that string to a Ruby hash that is passed
+        // to the block.
+        block.$call(Opal.JSON.$parse(JSON.stringify(options)))
+      })
+      `
+    end
   end
 end

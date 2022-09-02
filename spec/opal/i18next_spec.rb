@@ -193,4 +193,35 @@ RSpec.describe I18next do
       expect(i18next.t("key")).to eq("other")
     end
   end
+
+  def oh(options)
+    JSON.parse(`JSON.stringify(options)`)
+  end
+
+  it "can handle the initialized event" do
+    initializedOptions = nil
+    # i18next.onInitialized { |options| initializedOptions  = oh(options) }
+    i18next.onInitialized { |options| initializedOptions  = options }
+    options = {
+      debug: true,
+      lng: "en",
+      ns: ["default"],
+      resources: {
+        en: {
+          default: {
+            "key": "default"
+          },
+          other: {
+            "key": "other"
+          }
+        }
+      }
+    }
+    i18next.init(options).then do
+      # Ignore the default options values, which are also included in the
+      # options passed to the initialized event.
+      expect(initializedOptions).to include(options)
+      # expect(initializedOptions).to eq("")
+    end
+  end
 end
