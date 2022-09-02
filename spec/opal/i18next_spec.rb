@@ -301,4 +301,30 @@ RSpec.describe I18next do
       end
     end
   end
+
+  it "can handle a failedLoading event" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+    failed_lng = nil
+    failed_ns = nil
+    failed_msg= nil
+    i18next.use(fetch_module)
+      i18next.on('failedLoading') { |lng, ns, msg|
+        failed_lng = lng
+        failed_ns = ns
+        failed_msg= msg
+      }
+      i18next.init({
+        debug: true,
+        fallbackLng: "en",
+        ns: "default",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        i18next.load_namespaces("unknown"). then do
+          expect(failed_lng).to eq("en")
+          expect(failed_ns).to eq("unknown")
+          expect(failed_msg.start_with?("failed loading")).to be true
+        end
+      end
+    end
+  end
 end
