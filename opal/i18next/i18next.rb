@@ -255,6 +255,8 @@ module I18next
     # @see https://www.i18next.com/overview/api#events The i18next events
     # @see #off
     def on(event, &listener)
+      # Some events require special listeners because those events return JavaScript objects
+      # to the listeners, and those object must be converted to Ruby Hashes.
       case event
       when "initialized"
         _onInitialized(listener)

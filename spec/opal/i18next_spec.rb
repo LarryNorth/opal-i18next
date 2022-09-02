@@ -304,10 +304,10 @@ RSpec.describe I18next do
 
   it "can handle a failedLoading event" do
     i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
-    failed_lng = nil
-    failed_ns = nil
-    failed_msg= nil
-    i18next.use(fetch_module)
+      i18next.use(fetch_module)
+      failed_lng = nil
+      failed_ns = nil
+      failed_msg= nil
       i18next.on('failedLoading') { |lng, ns, msg|
         failed_lng = lng
         failed_ns = ns
@@ -323,6 +323,36 @@ RSpec.describe I18next do
           expect(failed_lng).to eq("en")
           expect(failed_ns).to eq("unknown")
           expect(failed_msg.start_with?("failed loading")).to be true
+        end
+      end
+    end
+  end
+
+  it "can handle a missingKey event" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      i18next.use(fetch_module)
+      missing_lng = nil
+      missing_ns = nil
+      missing_key = nil
+      missing_res = nil
+      i18next.on('missingKey') { |lng, ns, key, res|
+        missing_lng = lng
+        missing_ns = ns
+        missing_key = key
+        missing_res = res
+      }
+      i18next.init({
+        debug: true,
+        fallbackLng: "sp",
+        saveMissing: true,
+        ns: "default",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        i18next.t("unknown_key"). then do
+          expect(missing_lng).to eq(["sp"])
+          expect(missing_ns).to eq("default")
+          expect(missing_key).to eq("unknown_key")
+          expect(missing_res).to eq("unknown_key")
         end
       end
     end
