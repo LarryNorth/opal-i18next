@@ -2,9 +2,9 @@ require "opal"
 require "native"
 require "json"
 
-  # Uses PromiseV2 if present
-  # @see https://opalrb.com/docs/guides/v1.5.1/async PromiseV2
-  module I18next
+# Uses PromiseV2 if present
+# @see https://opalrb.com/docs/guides/v1.5.1/async PromiseV2
+module I18next
 
   Promise = defined?(PromiseV2) ? PromiseV2 : ::Promise
 
@@ -25,6 +25,9 @@ require "json"
   # {https://www.i18next.com/overview/api#setDefaultNamespace setDefaultNamespace},
   # {https://www.i18next.com/overview/api#t t}, and
   # {https://www.i18next.com/overview/api#use use}.
+  #
+  # It can handle these {https://www.i18next.com/overview/api#events i18next events} {https://www.i18next.com/overview/api#oninitialized initialized}.
+  #
   # It also provides method {#import_js_module} for loading {https://www.i18next.com/overview/plugins-and-utils i18next plugins}.
   class I18next
 
@@ -242,13 +245,16 @@ require "json"
       raise 'Not implemented'
     end
 
-    def onInitialized(&block)
+    # Create a handler for the i18next initialized event.
+    # @param &handler [block] an event handling block that is passed initialized options Hash
+    # @see https://www.i18next.com/overview/api#oninitialized The i18next initialized event
+    def onInitialized(&handler)
       `
       #{@i18next}.on("initialized", (options) => {
         // Convert the JavaScript options object to a string and
         // then convert that string to a Ruby hash that is passed
         // to the block.
-        block.$call(Opal.JSON.$parse(JSON.stringify(options)))
+        handler.$call(Opal.JSON.$parse(JSON.stringify(options)))
       })
       `
     end

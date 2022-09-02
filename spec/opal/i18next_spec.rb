@@ -200,7 +200,6 @@ RSpec.describe I18next do
 
   it "can handle the initialized event" do
     initializedOptions = nil
-    # i18next.onInitialized { |options| initializedOptions  = oh(options) }
     i18next.onInitialized { |options| initializedOptions  = options }
     options = {
       debug: true,
@@ -221,7 +220,6 @@ RSpec.describe I18next do
       # Ignore the default options values, which are also included in the
       # options passed to the initialized event.
       expect(initializedOptions).to include(options)
-      # expect(initializedOptions).to eq("")
     end
   end
 end

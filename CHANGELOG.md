@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Handle the i18next initialized event
+
 ## 0.2.0
 
 * The t method accepts multiple keys and options

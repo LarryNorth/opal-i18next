@@ -20,6 +20,9 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [t](https://www.i18next.com/overview/api#t)
 - [use](https://www.i18next.com/overview/api#use)
 
+It can handle these [i18next events](https://www.i18next.com/overview/api#events):
+ - [initialized](https://www.i18next.com/overview/api#oninitialized)
+
 It also provides method `import_js_module` for loading [i18next plugins](https://www.i18next.com/overview/plugins-and-utils).
 
 ## Installation
