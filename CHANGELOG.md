@@ -1,6 +1,6 @@
 ## 0.3.0
 
-* Handle the i18next initialized event
+* Handle the i18next events
 
 ## 0.2.0
 

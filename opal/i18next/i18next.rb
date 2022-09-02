@@ -255,8 +255,11 @@ module I18next
     # @see https://www.i18next.com/overview/api#events The i18next events
     # @see #off
     def on(event, &listener)
-      if event == "initialized"
+      case event
+      when "initialized"
         _onInitialized(listener)
+      when "loaded"
+        _onLoaded(listener)
       else
         `#{@i18next}.on(event, listener)`
       end
@@ -287,6 +290,22 @@ module I18next
         // then convert that string to a Ruby hash that is passed
         // to the listener.
         listener.$call(Opal.JSON.$parse(JSON.stringify(options)))
+      })
+      `
+    end
+
+    # @private
+    # Create a listener for the i18next loaded event.
+    # @param &listener [Proc] an event listener block that is passed loaded Hash
+    # @see https://www.i18next.com/overview/api#onloaded The i18next onLoaded event
+    def _onLoaded(listener)
+      `
+      #{@i18next}.on("loaded", (loaded) => {
+        console.log("loaded: " + JSON.stringify(loaded))
+        // Convert the JavaScript load object to a string and
+        // then convert that string to a Ruby hash that is passed
+        // to the listener.
+        listener.$call(Opal.JSON.$parse(JSON.stringify(loaded)))
       })
       `
     end

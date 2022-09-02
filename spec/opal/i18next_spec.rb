@@ -280,4 +280,25 @@ RSpec.describe I18next do
       end
     end
   end
+
+  it "can handle a loaded event" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      lng_ns = nil
+      i18next.use(fetch_module)
+      i18next.on('loaded') { |loaded|
+        lng_ns = loaded
+      }
+      i18next.init({
+        debug: true,
+        fallbackLng: "en",
+        ns: "default",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        expect(lng_ns).to eq({ en: { default: true } })
+        i18next.load_namespaces("other"). then do
+          expect(lng_ns).to eq({ en: { other: true } })
+        end
+      end
+    end
+  end
 end

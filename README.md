@@ -15,13 +15,14 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [language](https://www.i18next.com/overview/api#language)
 - [languages](https://www.i18next.com/overview/api#languages)
 - [loadNamespaces](https://www.i18next.com/overview/api#loadNamespaces)
+- [off](https://www.i18next.com/overview/api#events)
+- [on](https://www.i18next.com/overview/api#events)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
 - [setDefaultNamespace](https://www.i18next.com/overview/api#setDefaultNamespace)
 - [t](https://www.i18next.com/overview/api#t)
 - [use](https://www.i18next.com/overview/api#use)
 
-It can handle these [i18next events](https://www.i18next.com/overview/api#events):
- - [initialized](https://www.i18next.com/overview/api#oninitialized)
+It can handle these [i18next events](https://www.i18next.com/overview/api#events).
 
 It also provides method `import_js_module` for loading [i18next plugins](https://www.i18next.com/overview/plugins-and-utils).
 
