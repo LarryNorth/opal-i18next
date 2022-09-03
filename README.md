@@ -5,12 +5,14 @@
 This gem supports i18next's basic functionality. The supported methods are:
 
 - [addResource](https://www.i18next.com/overview/api#addResource)
+- [addResourceBundle](https://www.i18next.com/overview/api#addResourceBundle)
 - [addResources](https://www.i18next.com/overview/api#addResources)
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
 - [dir](https://www.i18next.com/overview/api#dir)
 - [exists](https://www.i18next.com/overview/api#exists)
 - [getResource](https://www.i18next.com/overview/api#getResource)
 - [getResourceBundle](https://www.i18next.com/overview/api#getResourceBundle)
+- [hasResourceBundle](https://www.i18next.com/overview/api#hasResourceBundle)
 - [init](https://www.i18next.com/overview/api#init)
 - [language](https://www.i18next.com/overview/api#language)
 - [languages](https://www.i18next.com/overview/api#languages)

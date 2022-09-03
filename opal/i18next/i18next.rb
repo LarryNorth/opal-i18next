@@ -11,12 +11,14 @@ module I18next
   # {I18next} is a basic wrapper around the JavaScript {https://www.i18next.com i18next module}.
   #
   # It wraps i18next methods {https://www.i18next.com/overview/api#addResource addResource},
+  #  {https://www.i18next.com/overview/api#addResourceBundle addResourceBundle},
   # {https://www.i18next.com/overview/api#addResources addResources},
   # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
   # {https://www.i18next.com/overview/api#getResource getResource},
   # {https://www.i18next.com/overview/api#getResourceBundle getResourceBundle},
+  # {https://www.i18next.com/overview/api#hasResourceBundle hasResourceBundle},
   # {https://www.i18next.com/overview/api#init init},
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
@@ -219,14 +221,21 @@ module I18next
       `#{@i18next}.addResources(lng, ns, #{resources.to_n})`
     end
 
-    # @private
-    def add_resource_bundle(lng, ns, resouces, deep, overwrite)
-      raise 'Not implemented'
+    # Adds a complete bundle
+    # @param lng [String] bundle language
+    # @param ns [String] bundel namespace
+    # @param deep [Boolean] if true will extend existing translations in the bundle
+    # @param overwrite [Boolean] if true it will overwrite existing translations in the bundle
+    # @see https://www.i18next.com/overview/api#addResourceBundle The i18next addResourceBundle method
+    def add_resource_bundle(lng, ns, resources, deep = false, overwrite = false)
+      `#{@i18next}.addResources(lng, ns, #{resources.to_n}, deep, overwrite)`
     end
 
-    # @private
+    # Checks if a resource bundle exists
+    # @param lng [String] language
+    # @param ns [String] namespace
     def has_resource_bundle(lng, ns)
-      raise 'Not implemented'
+      `#{@i18next}.hasResourceBundle(lng, ns)`
     end
 
     # @private
