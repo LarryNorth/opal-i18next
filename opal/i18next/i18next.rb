@@ -193,16 +193,6 @@ module I18next
       raise 'Not implemented'
     end
 
-    # @private
-    def off
-      raise 'Not implemented'
-    end
-
-    # @private
-    def on
-      raise 'Not implemented'
-    end
-
     # Gets one value by given key.
     # @see https://www.i18next.com/overview/api#getResource The i18next getResource method
     def get_resource(lng, ns, key, options = {})
