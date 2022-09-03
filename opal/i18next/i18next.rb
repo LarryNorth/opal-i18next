@@ -11,7 +11,7 @@ module I18next
   # {I18next} is a basic wrapper around the JavaScript {https://www.i18next.com i18next module}.
   #
   # It wraps i18next methods {https://www.i18next.com/overview/api#addResource addResource},
-  #  {https://www.i18next.com/overview/api#addResourceBundle addResourceBundle},
+  # {https://www.i18next.com/overview/api#addResourceBundle addResourceBundle},
   # {https://www.i18next.com/overview/api#addResources addResources},
   # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
   # {https://www.i18next.com/overview/api#dir dir},
@@ -25,6 +25,7 @@ module I18next
   # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
   # {https://www.i18next.com/overview/api#events off},
   # {https://www.i18next.com/overview/api#events on},
+  # {https://www.i18next.com/overview/api#removeResourceBundle removeResourceBundle},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
   # {https://www.i18next.com/overview/api#setDefaultNamespace setDefaultNamespace},
   # {https://www.i18next.com/overview/api#t t}, and
@@ -252,9 +253,11 @@ module I18next
       JSON.parse(`JSON.stringify(#{@i18next}.getResourceBundle(lng, ns))`)
     end
 
-    # @private
+    # Removes a resource bundle exists
+    # @param lng [String] language
+    # @param ns [String] namespace
     def remove_resource_bundle(lng, ns)
-      raise 'Not implemented'
+      `#{@i18next}.removeResourceBundle(lng, ns)`
     end
 
     # Create a listener for an i18next event.

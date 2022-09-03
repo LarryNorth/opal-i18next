@@ -192,13 +192,24 @@ RSpec.describe I18next do
     end
   end
 
-  it "can checrk if a resource bundle exists" do
+  it "can check if a resource bundle exists" do
     i18next.init({
       debug: true
     }).then do
       expect(i18next.has_resource_bundle("fr", "default")).to be false
       i18next.add_resource_bundle("fr", "default", { french: "Français", spanish: "Espagnol" })
       expect(i18next.has_resource_bundle("fr", "default")).to be true
+    end
+  end
+
+  it "can remove a resource bundle" do
+    i18next.init({
+      debug: true
+    }).then do
+      i18next.add_resource_bundle("fr", "default", { french: "Français", spanish: "Espagnol" })
+      expect(i18next.has_resource_bundle("fr", "default")).to be true
+      i18next.remove_resource_bundle("fr", "default")
+      expect(i18next.has_resource_bundle("fr", "default")).to be false
     end
   end
 

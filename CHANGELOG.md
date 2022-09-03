@@ -1,7 +1,7 @@
 ## 0.3.0
 
 * Handle the i18next events
-* Support i18next methods addResourceBundle and  addResourceBundle
+* Support i18next methods addResourceBundle, addResourceBundle, and removeResourceBundle
 
 ## 0.2.0
 
