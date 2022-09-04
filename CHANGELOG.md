@@ -3,6 +3,7 @@
 * Handle the i18next events
 * Support i18next methods addResourceBundle, addResourceBundle, and removeResourceBundle
 * Support store events
+* Method chaining from method use
 
 ## 0.2.0
 
