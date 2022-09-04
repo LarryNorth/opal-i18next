@@ -28,6 +28,7 @@ module I18next
   # {https://www.i18next.com/overview/api#removeResourceBundle removeResourceBundle},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
   # {https://www.i18next.com/overview/api#setDefaultNamespace setDefaultNamespace},
+  # {https://www.i18next.com/overview/api#https://www.i18next.com/overview/api#store-events store.on},
   # {https://www.i18next.com/overview/api#t t}, and
   # {https://www.i18next.com/overview/api#use use}.
   #
@@ -267,6 +268,19 @@ module I18next
       else
         `#{@i18next}.on(event, listener)`
       end
+      listener
+    end
+
+    # Create a listener for an i18next store event.
+    #
+    # Only available after the init call.
+    #
+    # @param event [String] event name ("added" or "removed")
+    # @param &listener [block] an event listener that is passed language and namespace arguments
+    # @return [Proc] the listener, which can be used to unsubscribe it via method off(event, listener)
+    # @see https://www.i18next.com/overview/api#store-events The i18next store events
+    def store_on(event, &listener)
+      `#{@i18next}.store.on(event, listener)`
       listener
     end
 

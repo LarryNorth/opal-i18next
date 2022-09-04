@@ -2,6 +2,7 @@
 
 * Handle the i18next events
 * Support i18next methods addResourceBundle, addResourceBundle, and removeResourceBundle
+* Support store events
 
 ## 0.2.0
 

@@ -279,6 +279,43 @@ RSpec.describe I18next do
     end
   end
 
+  it "can handle an added store event" do
+    added_lng = nil
+    added_ns = nil
+    i18next.init({}).then do
+      i18next.store_on('added') { |lng, ns|
+        added_lng = lng
+        added_ns = ns
+      }
+      i18next.add_resource("fr", "default", "key", "Français")
+      expect(added_lng).to eq("fr")
+      expect(added_ns).to eq("default")
+    end
+  end
+
+  it "can handle a removed store event" do
+    removed_lng = nil
+    removed_ns = nil
+    i18next.init({
+      lng: "en",
+      ns: "default",
+      resources: {
+        en: {
+           default: { known_key: "known" }
+        }
+      }
+    }).then do
+      expect(i18next.exists("known_key")).to be(true)
+      i18next.store_on('removed') { |lng, ns|
+        removed_lng = lng
+        removed_ns = ns
+      }
+      i18next.remove_resource_bundle("en", "default")
+      expect(removed_lng).to eq("en")
+      expect(removed_ns).to eq("default")
+    end
+  end
+
   it "can unsubscribe an event's listeners" do
     newLanguage = nil
     i18next.on('languageChanged') { |lng|

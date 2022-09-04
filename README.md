@@ -22,6 +22,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [removeResourceBundle](https://www.i18next.com/overview/api#removeResourceBundle)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
 - [setDefaultNamespace](https://www.i18next.com/overview/api#setDefaultNamespace)
+- [store.on](https://www.i18next.com/overview/api#store-events)
 - [t](https://www.i18next.com/overview/api#t)
 - [use](https://www.i18next.com/overview/api#use)
 
