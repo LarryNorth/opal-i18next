@@ -18,8 +18,7 @@ RSpec.describe I18next do
 
   it "can use an i18next plugin" do
     i18next.import_js_module("../../js/i18next-touppercase").then do |touppercase_module|
-      i18next.use(touppercase_module)
-      i18next.init({
+      i18next.use(touppercase_module).init({
         lng: "en",
         resources: {
           en: {
@@ -108,8 +107,7 @@ RSpec.describe I18next do
 
   it "can load namespaces" do
     i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
-      i18next.use(fetch_module)
-      i18next.init({
+      i18next.use(fetch_module).init({
         debug: true,
         ns: "default",
         fallbackLng: "en",
@@ -362,8 +360,7 @@ RSpec.describe I18next do
   it "can handle a loaded event" do
     i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
       lng_ns = nil
-      i18next.use(fetch_module)
-      i18next.on('loaded') { |loaded|
+      i18next.use(fetch_module).on('loaded') { |loaded|
         lng_ns = loaded
       }
       i18next.init({
@@ -382,11 +379,10 @@ RSpec.describe I18next do
 
   it "can handle a failedLoading event" do
     i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
-      i18next.use(fetch_module)
       failed_lng = nil
       failed_ns = nil
       failed_msg= nil
-      i18next.on('failedLoading') { |lng, ns, msg|
+      i18next.use(fetch_module).on('failedLoading') { |lng, ns, msg|
         failed_lng = lng
         failed_ns = ns
         failed_msg= msg
@@ -408,12 +404,11 @@ RSpec.describe I18next do
 
   it "can handle a missingKey event" do
     i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
-      i18next.use(fetch_module)
       missing_lng = nil
       missing_ns = nil
       missing_key = nil
       missing_res = nil
-      i18next.on('missingKey') { |lng, ns, key, res|
+      i18next.use(fetch_module).on('missingKey') { |lng, ns, key, res|
         missing_lng = lng
         missing_ns = ns
         missing_key = key

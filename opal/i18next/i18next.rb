@@ -69,8 +69,10 @@ module I18next
     #
     # @param js_module a plugin's JavaScript module that was imported
     #   by method {#import_js_module}
+    # @return [I18next::I18next] self
     def use(js_module)
       `#{@i18next}.use(js_module.default)`
+      self
     end
 
     # Initializes {https://www.i18next.com/overview/api#init i18next}

@@ -15,8 +15,7 @@ I18n = I18next::I18next.new
 I18n.import_js_module('https://unpkg.com/i18next-fetch-backend@3.0.0/dist/i18next-fetch-backend.esm.js').then do |js_module|
 
   # After the fetch module is loaded, initialize i18next.
-  I18n.use(js_module)
-  I18n.init({
+  I18n.use(js_module).init({
     debug: true,
     fallbackLng: "en",
     backend: { loadPath: '/locales/{{lng}}/{{ns}}.json' }
