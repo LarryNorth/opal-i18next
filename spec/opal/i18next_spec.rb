@@ -233,7 +233,7 @@ RSpec.describe I18next do
     end
   end
 
-  it "can can get data by language" do
+  it "can get data by language" do
     i18next.init({
       debug: true,
       lng: "en",
