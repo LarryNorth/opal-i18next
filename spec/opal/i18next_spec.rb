@@ -233,8 +233,24 @@ RSpec.describe I18next do
     end
   end
 
-  def oh(options)
-    JSON.parse(`JSON.stringify(options)`)
+  it "can can get data by language" do
+    i18next.init({
+      debug: true,
+      lng: "en",
+      ns: "default",
+      resources: {
+        en: {
+          default: {
+            "key": "default"
+          },
+          other: {
+            "key": "other"
+          }
+        }
+      }
+    }).then do
+      expect(i18next.get_data_by_language("en")).to eq({ default: { "key"=>"default" }, other: { key: "other" } })
+    end
   end
 
   it "can handle the initialized event" do

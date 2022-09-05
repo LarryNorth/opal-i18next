@@ -16,6 +16,7 @@ module I18next
   # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
+  # {https://www.i18next.com/overview/api#getDataByLanguage getDataByLanguage},
   # {https://www.i18next.com/overview/api#getResource getResource},
   # {https://www.i18next.com/overview/api#getResourceBundle getResourceBundle},
   # {https://www.i18next.com/overview/api#hasResourceBundle hasResourceBundle},
@@ -232,18 +233,19 @@ module I18next
       `#{@i18next}.hasResourceBundle(lng, ns)`
     end
 
-    # @private
+    # Returns resource data for a language.
+    # @param lng [String] language
+    # @return resource data
+    # @see https://www.i18next.com/overview/api#getDataByLanguage The i18next getDataByLanguage method
     def get_data_by_language(lng)
-      raise 'Not implemented'
+      js_obj_to_ruby_hash(`#{@i18next}.getDataByLanguage(lng)`)
     end
 
     # Gets a resource bundle.
     # @return [Hash] key/value pairs
     # @see https://www.i18next.com/overview/api#getResourceBundle The i18next getResourceBundle method
     def get_resource_bundle(lng, ns)
-      # Convert the JavaScript object returned by getResourceBundle to a string
-      # and then convert that string to a Ruby hash that is returned to the caller.
-      JSON.parse(`JSON.stringify(#{@i18next}.getResourceBundle(lng, ns))`)
+      js_obj_to_ruby_hash(`#{@i18next}.getResourceBundle(lng, ns)`)
     end
 
     # Removes a resource bundle exists
@@ -316,18 +318,27 @@ module I18next
 
     # @private
     # Create a listener for the i18next loaded event.
-    # @param &listener [Proc] an event listener block that is passed loaded Hash
+    # @param listener [Proc] an event listener block that is passed loaded Hash
     # @see https://www.i18next.com/overview/api#onloaded The i18next onLoaded event
     def _onLoaded(listener)
       `
       #{@i18next}.on("loaded", (loaded) => {
-        console.log("loaded: " + JSON.stringify(loaded))
         // Convert the JavaScript load object to a string and
         // then convert that string to a Ruby hash that is passed
         // to the listener.
         listener.$call(Opal.JSON.$parse(JSON.stringify(loaded)))
       })
       `
+    end
+
+    # @private
+    # Convert a JavaScript obj to a Ruby Hash.
+    # @param js_obj JavaScript object
+    # @return [Hash] Ruby Hash
+    def js_obj_to_ruby_hash(js_obj)
+      # Convert the JavaScript object to a string and then convert that string
+      # to a Ruby hash.
+      JSON.parse(`JSON.stringify(js_obj)`)
     end
   end
 end

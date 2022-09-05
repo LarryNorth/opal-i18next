@@ -10,6 +10,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
 - [dir](https://www.i18next.com/overview/api#dir)
 - [exists](https://www.i18next.com/overview/api#exists)
+- [getDataByLanguage](https://www.i18next.com/overview/api#getDataByLanguage)
 - [getResource](https://www.i18next.com/overview/api#getResource)
 - [getResourceBundle](https://www.i18next.com/overview/api#getResourceBundle)
 - [hasResourceBundle](https://www.i18next.com/overview/api#hasResourceBundle)
