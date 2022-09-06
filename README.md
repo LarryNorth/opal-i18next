@@ -18,6 +18,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [init](https://www.i18next.com/overview/api#init)
 - [language](https://www.i18next.com/overview/api#language)
 - [languages](https://www.i18next.com/overview/api#languages)
+- [loadNameLanguages](https://www.i18next.com/overview/api#loadNameLanguages)
 - [loadNamespaces](https://www.i18next.com/overview/api#loadNamespaces)
 - [off](https://www.i18next.com/overview/api#events)
 - [on](https://www.i18next.com/overview/api#events)

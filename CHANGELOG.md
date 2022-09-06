@@ -1,7 +1,7 @@
 ## 0.3.0
 
 * Handle the i18next events
-* Support i18next methods addResourceBundle, addResourceBundle, getDataByLanguage, getFixedT, and removeResourceBundle
+* Support i18next methods addResourceBundle, addResourceBundle, getDataByLanguage, getFixedT, loadLanguages, and removeResourceBundle
 * Support store events
 * Method chaining from method use
 

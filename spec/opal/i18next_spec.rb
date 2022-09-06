@@ -211,6 +211,24 @@ RSpec.describe I18next do
     end
   end
 
+  it "can load languages" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      i18next.use(fetch_module).init({
+        debug: true,
+        ns: "default",
+        fallbackLng: "en",
+        preload: ["en"],
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        expect(i18next.has_resource_bundle("en", "default")).to be true
+        expect(i18next.has_resource_bundle("fr", "default")).to be false
+        i18next.load_languages("fr").then do
+          expect(i18next.has_resource_bundle("fr", "default")).to be true
+        end
+      end
+    end
+  end
+
   it "can set the default namespace" do
     i18next.init({
       debug: true,

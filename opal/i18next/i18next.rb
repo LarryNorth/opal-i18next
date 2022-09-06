@@ -24,6 +24,7 @@ module I18next
   # {https://www.i18next.com/overview/api#init init},
   # {https://www.i18next.com/overview/api#language language},
   # {https://www.i18next.com/overview/api#languages languages},
+  # {https://www.i18next.com/overview/api#loadLanguages loadLanguages},
   # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
   # {https://www.i18next.com/overview/api#events off},
   # {https://www.i18next.com/overview/api#events on},
@@ -158,7 +159,7 @@ module I18next
     end
 
     # Loads additional namespaces not defined in init options
-    # @param [String, Array<String>] ns one or more namespaces
+    # @param ns [String, Array<String>] one or more namespaces
     # @return [Promise] a promise that resolves when the namespaces have been loaded
     # @see https://www.i18next.com/overview/api#loadNamespaces The i18next loadNamespaces method
     def load_namespaces(ns)
@@ -173,9 +174,20 @@ module I18next
       promise
     end
 
-    # @private
-    def load_languages(*lngs)
-      raise 'Not implemented'
+    # Loads additional languages not defined in init options (preload).
+    # @param lngs [String, Array<String>] one or more languages
+    # @return [Promise] a promise that resolves when the languages have been loaded
+    # @see https://www.i18next.com/overview/api#loadLanguages The i18next loadLanguages method
+    def load_languages(lngs)
+      promise = Promise.new
+      `
+      #{@i18next}.loadLanguages(lngs)
+      .then(
+        () => {
+          promise.$resolve()
+        });
+    `
+      promise
     end
 
     # @private
