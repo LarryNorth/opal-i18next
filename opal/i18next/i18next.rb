@@ -17,6 +17,7 @@ module I18next
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
   # {https://www.i18next.com/overview/api#getDataByLanguage getDataByLanguage},
+  # {https://www.i18next.com/overview/api#getFixedT getFixedT},
   # {https://www.i18next.com/overview/api#getResource getResource},
   # {https://www.i18next.com/overview/api#getResourceBundle getResourceBundle},
   # {https://www.i18next.com/overview/api#hasResourceBundle hasResourceBundle},
@@ -124,9 +125,24 @@ module I18next
       `#{@i18next}.exists(key)`
     end
 
-    # @private
-    def get_fixed_t
-      raise 'Not implemented'
+    # Returns a Proc that acts a +t+ method that defaults to a language and namespace.
+    # @example When calling the returned Proc, use brackets, not parentheses
+    #   en = get_fixed_t("en")
+    #   translation = en["key"]
+    # @param lng [String] language
+    # @param ns [String] namespace
+    # @param key_prefix [String] key prefix
+    # @see https://www.i18next.com/overview/api#getFixedT The i18next getFixedT method
+    def get_fixed_t(lng = nil, ns = nil, key_prefix = nil)
+      if key_prefix && ns && lng
+        `#{@i18next}.getFixedT(lng, ns, key_prefix)`
+      elsif ns && lng
+        `#{@i18next}.getFixedT(lng, ns)`
+      elsif lng
+        `#{@i18next}.getFixedT(lng)`
+      else
+        `#{@i18next}.getFixedT()`
+      end
     end
 
     # @see https://www.i18next.com/overview/api#languages The i18next languages method

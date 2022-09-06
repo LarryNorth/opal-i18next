@@ -233,6 +233,72 @@ RSpec.describe I18next do
     end
   end
 
+  it "can create a fixed t method for a language" do
+    i18next.init({
+      debug: true,
+      lng: "en",
+      ns: "default",
+      resources: {
+        en: {
+          default: {
+            "key": "default"
+          },
+          other: {
+            "key": "other"
+          }
+        }
+      }
+    }).then do
+      fixed_lng = i18next.get_fixed_t("en")
+      expect(fixed_lng["key"]).to eq("default")
+    end
+  end
+
+  it "can create a fixed t method for a language and namespace" do
+    i18next.init({
+      debug: true,
+      lng: "en",
+      ns: "default",
+      resources: {
+        en: {
+          default: {
+            "key": "default"
+          },
+          other: {
+            "key": "other"
+          }
+        }
+      }
+    }).then do
+      fixed_lng_ns = i18next.get_fixed_t("en", "other")
+      expect(fixed_lng_ns["key"]).to eq("other")
+    end
+  end
+
+  it "can create a fixed t method for a language, namespace, and key prefix" do
+    i18next.init({
+      debug: true,
+      lng: "en",
+      ns: "default",
+      resources: {
+        en: {
+          default: {
+            "key": "default"
+          },
+          other: {
+            "key": "other",
+            "key_prefix": {
+              "key": "prefix"
+            }
+          }
+        }
+      }
+    }).then do
+      fixed_lng_ns_key_prefix = i18next.get_fixed_t("en", "other", "key_prefix")
+      expect(fixed_lng_ns_key_prefix["key"]).to eq("prefix")
+    end
+  end
+
   it "can get data by language" do
     i18next.init({
       debug: true,

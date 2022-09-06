@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.description = <<~DESC
     A basic Opal wrapper for the JavaScript i18next module that supports methods
     addResource, addResourceBundle, addResources, changeLanguage, dir, exists,
-    getDataByLanguage, getResource, getResourceBundle, hasResourceBundle, init,
-    language, languages, loadNamespaces, off, on, removeResourceBundle,
+    getDataByLanguage, getFixedT, getResource, getResourceBundle, hasResourceBundle,
+    init, language, languages, loadNamespaces, off, on, removeResourceBundle,
     resolvedLanguage, store.on, t, and use. It also provides method
     import_js_module for loading i18next plugins.
   DESC
