@@ -14,6 +14,7 @@ module I18next
   # {https://www.i18next.com/overview/api#addResourceBundle addResourceBundle},
   # {https://www.i18next.com/overview/api#addResources addResources},
   # {https://www.i18next.com/overview/api#changelanguage changeLanguage},
+  # {https://www.i18next.com/overview/api#cloneInstance cloneInstance},
   # {https://www.i18next.com/overview/api#dir dir},
   # {https://www.i18next.com/overview/api#exists exists},
   # {https://www.i18next.com/overview/api#getDataByLanguage getDataByLanguage},
@@ -79,7 +80,7 @@ module I18next
     end
 
     # Initializes {https://www.i18next.com/overview/api#init i18next}
-    # @param options [Hash] a hash with keys matching the {https://www.i18next.com/overview/configuration-options i18next options}.
+    # @param options [Hash] a hash with keys matching the {https://www.i18next.com/overview/configuration-options i18next options}
     # @return [Promise] a promise that resolves when i18next has been initialized
     def init(options = {})
       promise = Promise.new
@@ -220,11 +221,6 @@ module I18next
       raise 'Not implemented'
     end
 
-    # @private
-    def clone_instance(options)
-      raise 'Not implemented'
-    end
-
     # Gets one value by given key.
     # @see https://www.i18next.com/overview/api#getResource The i18next getResource method
     def get_resource(lng, ns, key, options = {})
@@ -327,7 +323,24 @@ module I18next
       end
     end
 
+    # Creates a clone of the current instance.
+    #
+    # Shares store, plugins and initial configuration. Can be used to create an
+    # instance sharing storage but being independent on set language or default namespaces.
+    # @param options [Hash] a hash with keys matching the {https://www.i18next.com/overview/configuration-options i18next options}
+    # @see https://www.i18next.com/overview/api#cloneInstance The i18next cloneInstance method
+    def clone_instance(options = {})
+      I18nextClone.new(@i18next, options)
+    end
+
     private
+
+    # @private
+    class I18nextClone < I18next
+      def initialize(js_i18next, options)
+        @i18next = `#{js_i18next}.cloneInstance(#{options.to_n})`
+      end
+    end
 
     # @private
     # Create a listener for the i18next initialized event.

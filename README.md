@@ -8,6 +8,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [addResourceBundle](https://www.i18next.com/overview/api#addResourceBundle)
 - [addResources](https://www.i18next.com/overview/api#addResources)
 - [changeLanguage](https://www.i18next.com/overview/api#changelanguage)
+- [cloneInstance](https://www.i18next.com/overview/api#cloneInstance)
 - [dir](https://www.i18next.com/overview/api#dir)
 - [exists](https://www.i18next.com/overview/api#exists)
 - [getDataByLanguage](https://www.i18next.com/overview/api#getDataByLanguage)

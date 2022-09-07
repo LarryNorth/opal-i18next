@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Support method cloneInstance
+
 ## 0.3.0
 
 * Handle the i18next events
