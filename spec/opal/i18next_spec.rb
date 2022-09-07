@@ -530,4 +530,32 @@ RSpec.describe I18next do
       end
     end
   end
+
+  it "can create a clone instance" do
+    i18next.init({
+      debug: true,
+      fallbackLng: "en",
+      defaultNS: "default",
+      resources: {
+        en: {
+          default: {
+            key: "value"
+          }
+        },
+        fr: {
+          other: {
+            key: "value_clone"
+          }
+        }
+     }
+    }).then do
+      expect(i18next.t("key")).to eq("value")
+      i18next_clone = i18next.clone_instance({
+        defaultNS: "other"
+      })
+      i18next_clone.change_language("fr").then do
+        expect(i18next_clone.t("key")).to eq("value_clone")
+      end
+    end
+  end
 end
