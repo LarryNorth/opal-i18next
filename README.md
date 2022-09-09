@@ -23,6 +23,7 @@ This gem supports i18next's basic functionality. The supported methods are:
 - [loadNamespaces](https://www.i18next.com/overview/api#loadNamespaces)
 - [off](https://www.i18next.com/overview/api#events)
 - [on](https://www.i18next.com/overview/api#events)
+- [reloadResources](https://www.i18next.com/overview/api#reloadResources)
 - [removeResourceBundle](https://www.i18next.com/overview/api#removeResourceBundle)
 - [resolvedLanguage](https://www.i18next.com/overview/api#resolvedLanguage)
 - [setDefaultNamespace](https://www.i18next.com/overview/api#setDefaultNamespace)

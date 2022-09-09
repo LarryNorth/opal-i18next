@@ -1,8 +1,8 @@
 ## 0.4.0
 
-* Support method cloneInstance
+* Support methods cloneInstance and reloadResources
 
-## 0.3.0
+## 0.3.0 - 2022-09-07
 
 * Handle the i18next events
 * Support i18next methods addResourceBundle, addResourceBundle, getDataByLanguage, getFixedT, loadLanguages, and removeResourceBundle

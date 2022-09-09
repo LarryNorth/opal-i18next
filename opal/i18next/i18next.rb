@@ -29,6 +29,7 @@ module I18next
   # {https://www.i18next.com/overview/api#loadNamespaces loadNamespaces},
   # {https://www.i18next.com/overview/api#events off},
   # {https://www.i18next.com/overview/api#events on},
+  # {https://www.i18next.com/overview/api#reloadResources reloadResources},
   # {https://www.i18next.com/overview/api#removeResourceBundle removeResourceBundle},
   # {https://www.i18next.com/overview/api#resolvedLanguage resolvedLanguage},
   # {https://www.i18next.com/overview/api#setDefaultNamespace setDefaultNamespace},
@@ -191,9 +192,24 @@ module I18next
       promise
     end
 
-    # @private
-    def reload_resources
-      raise 'Not implemented'
+    # Reloads resources on given state.
+    #
+    # Optionally you can pass an array of languages and namespaces as params if
+    # you don't want to reload all.
+    # @param lngs [String, Array<String>] one or more languages
+    # @param ns [String, Array<String>] one or more namespaces
+    # @return [Promise] a promise that resolves when the resources have been loaded
+    # @see https://www.i18next.com/overview/api#reloadResources The i18next reloadResources method
+    def reload_resources(lng = nil, ns = nil)
+      if !lng && !ns
+        reload_all_resources
+      elsif lng && !ns
+        reload_lng_resources(lng)
+      elsif !lng && ns
+        reload_ns_resources(ns)
+      else
+        reload_lng_ns_resources(lng, ns)
+      end
     end
 
     # Changes the default namespace.
@@ -340,6 +356,55 @@ module I18next
       def initialize(js_i18next, options)
         @i18next = `#{js_i18next}.cloneInstance(#{options.to_n})`
       end
+    end
+
+    # @private
+    def reload_all_resources
+      promise = Promise.new
+      `
+      #{@i18next}.reloadResources()
+      .then(
+        () => {
+          promise.$resolve()
+        });
+    `
+      promise
+    end
+
+    def reload_lng_resources(lng)
+      promise = Promise.new
+      `
+      #{@i18next}.reloadResources(lng)
+      .then(
+        () => {
+          promise.$resolve()
+        });
+    `
+      promise
+    end
+
+    def reload_ns_resources(ns)
+      promise = Promise.new
+      `
+      #{@i18next}.reloadResources(null, ns)
+      .then(
+        () => {
+          promise.$resolve()
+        });
+    `
+      promise
+    end
+
+    def reload_lng_ns_resources(lng, ns)
+      promise = Promise.new
+      `
+      #{@i18next}.reloadResources(lng, ns)
+      .then(
+        () => {
+          promise.$resolve()
+        });
+    `
+      promise
     end
 
     # @private

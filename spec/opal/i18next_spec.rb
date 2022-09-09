@@ -211,6 +211,79 @@ RSpec.describe I18next do
     end
   end
 
+  it "can reload all resources" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      i18next.use(fetch_module).init({
+        debug: true,
+        ns: ["default", "other"],
+        lng: ["en", "fr"],
+        preload: ["en", "fr"],
+        fallbackLng: "en",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        i18next.reload_resources.then do
+          expect(i18next.has_resource_bundle("en", "default")).to be true
+          expect(i18next.has_resource_bundle("en", "other")).to be true
+          expect(i18next.has_resource_bundle("fr", "default")).to be true
+          expect(i18next.has_resource_bundle("fr", "other")).to be true
+        end
+      end
+    end
+  end
+
+  it "can reload language resources" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      i18next.use(fetch_module).init({
+        debug: true,
+        ns: ["default", "other"],
+        lng: ["en", "fr"],
+        preload: ["en", "fr"],
+        fallbackLng: "en",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        i18next.reload_resources("en").then do
+          expect(i18next.has_resource_bundle("en", "default")).to be true
+          expect(i18next.has_resource_bundle("en", "other")).to be true
+        end
+      end
+    end
+  end
+
+  it "can reload namespace resources" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      i18next.use(fetch_module).init({
+        debug: true,
+        ns: ["default", "other"],
+        lng: ["en", "fr"],
+        preload: ["en", "fr"],
+        fallbackLng: "en",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        i18next.reload_resources(nil, "other").then do
+          expect(i18next.has_resource_bundle("en", "other")).to be true
+          expect(i18next.has_resource_bundle("fr", "other")).to be true
+        end
+      end
+    end
+  end
+
+  it "can reload language-namespace resources" do
+    i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
+      i18next.use(fetch_module).init({
+        debug: true,
+        ns: ["default", "other"],
+        lng: ["en", "fr"],
+        preload: ["en", "fr"],
+        fallbackLng: "en",
+        backend: { loadPath: '/spec/locales/{{lng}}/{{ns}}.json' }
+      }).then do
+        i18next.reload_resources("fr", "other").then do
+          expect(i18next.has_resource_bundle("fr", "other")).to be true
+        end
+      end
+    end
+  end
+
   it "can load languages" do
     i18next.import_js_module("../../js/i18next-fetch-backend-3.0.0.ems.js").then do |fetch_module|
       i18next.use(fetch_module).init({

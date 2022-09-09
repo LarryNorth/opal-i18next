@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
     addResource, addResourceBundle, addResources, changeLanguage, cloneInstance,
     dir, exists, getDataByLanguage, getFixedT, getResource, getResourceBundle,
     hasResourceBundle, init, language, languages, loadLanguages, loadNamespaces,
-    off, on, removeResourceBundle, resolvedLanguage, store.on, t, and use. It
-    also provides method import_js_module for loading i18next plugins.
+    off, on, reloadResources, removeResourceBundle, resolvedLanguage, store.on,
+    t, and use. It also provides method import_js_module for loading i18next plugins.
   DESC
   spec.authors = ["Larry North"]
 
