@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version = I18next::VERSION
   spec.summary = "An Opal wrapper for the JavaScript i18next module."
   spec.description = <<~DESC
-    A basic Opal wrapper for the JavaScript i18next module that supports methods
+    A basic Opal wrapper for the JavaScript I18N module i18next that supports functions
     addResource, addResourceBundle, addResources, changeLanguage, cloneInstance,
     dir, exists, getDataByLanguage, getFixedT, getResource, getResourceBundle,
     hasResourceBundle, init, language, languages, loadLanguages, loadNamespaces,
