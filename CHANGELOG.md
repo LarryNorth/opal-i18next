@@ -1,4 +1,4 @@
-## 0.4.0
+## 0.4.0 2022-09-14
 
 * Support methods cloneInstance and reloadResources
 
