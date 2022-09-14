@@ -631,4 +631,18 @@ RSpec.describe I18next do
       end
     end
   end
+
+  it "can format using i18next's built-in formating functions" do
+    i18next.init({
+      debug: true,
+      lng: "de",
+      resources: {
+        de: {
+          translation: { key: "Some format {{val, number}}" }
+        }
+      }
+    }).then do
+      expect(i18next.t("key", { val: 1000 })).to eq("Some format 1.000")
+    end
+  end
 end
